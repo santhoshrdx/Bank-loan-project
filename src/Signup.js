@@ -1,54 +1,44 @@
 import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validation from './SignupValidation';
-import axios from 'axios'
+import axios from 'axios';
 
 function Signup(){
 
-    const [values,setValue]=useState({
+    const [values, setValues]= useState({
         name: '',
         email: '',
         password: ''
     })
-    const navigate =useNavigate();
-    const [error, setErrors] = useState({})
-    const handleInput =(event)=>{
-        setValue(prev =>({...prev, [event.target.name]:[event.target.value]}))
-    }
-    const handleSubmit =(event)=>{
-        event.preventDefault();
-        setErrors(Validation(values));
-        if(error.name === "" && error.email === "" && error.password === ""){
-            axios.post('http://localhost:8081/signup', values)
-            .then(res => {
-                navigate('/')
-            })
-            .catch(err => console.log(res))
-        }
-    }
+ const handleChange = (event) => {
+    setValues({...values,[event.target.name]:[event.target.value]})
+ }
+
+ const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8081/signup',values)
+    .then(res => console.log("SUCCESSFUL"))
+    .catch(err => console.log(err));
+ }
 
     return(
         <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
             <div className='bg-white p-3 rounded w-25'>
                 <h2>Sign up</h2>
-                <form action=" " onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor="name"><strong>Name</strong></label>
                         <input type ="text"placeholder='Enter Name' name='name'
-                        onChange={handleInput} className='form-control rounded-0'/>
-                        {error.name && <span className='text-danger'> {error.name}</span>}
+                        className='form-control rounded-0'  onChange={handleChange} />
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="email"><strong>Email</strong></label>
                         <input type ="email"placeholder='Enter Email' name='email'
-                        onChange={handleInput} className='form-control rounded-0'/>
-                        {error.email && <span className='text-danger'> {error.email}</span>}
+                        className='form-control rounded-0'  onChange={handleChange}/>
                     </div>
                     <div className='mb-3'>
                         <label htmlFor="password"><strong>Password</strong></label>
                         <input type ="password"placeholder='Enter Password ' name='password'
-                        onChange={handleInput} className='form-control rounded-0'/>
-                        {error.password && <span className='text-danger'> {error.password}</span>}
+                       className='form-control rounded-0'  onChange={handleChange} />
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-0'><strong>Sign up</strong></button>
                     <p>You are agree to our terms and Policies</p>
