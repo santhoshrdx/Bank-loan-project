@@ -3,7 +3,7 @@ import Login from "./component/Login";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from "./component/Signup";
 
-import Greet from "./component/Greet";
+import Sidebar from "./component/Sidebar";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/Greet' element={<Greet />} />
+        <Route path='/sidebar' element={<Sidebar />} />
       </Routes>
     </BrowserRouter>
   );

@@ -30,7 +30,7 @@ function Login() {
         .then((res) => {
           console.log('success');
           if (res.data.success) {
-            navigate('/Greet');
+            navigate('/sidebar');
           } else {
             alert('Invalid credentials. Please try again.');
           }
