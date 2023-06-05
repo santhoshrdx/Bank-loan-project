@@ -1,0 +1,17 @@
+.but{
+    margin-left: 150px;
+    width:150px;
+    border-radius: 10px;
+    font-size:20px;
+    text-align:center;
+}
+.table-content {
+    width: 450px;
+    margin: 50px auto;
+    text-align: center;
+}
+td {
+    width: 100px;
+}
+
+

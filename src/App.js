@@ -2,14 +2,11 @@ import React from "react";
 import Login from "./component/Login";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from "./component/Signup";
-import Overview from './pages/Overview';
-import { Reports, ReportsOne, ReportsTwo, ReportsThree } from './pages/Report';
-import Team from './pages/Team';
-
-import ButtonAppBar from "./component/navbar";
-
-
-
+import ButtonAppBar from "./component/Navbar";
+import Report from "./pages/Report";
+import CustomerRegistration  from "./pages/CustomerRegistration";
+import AddCustomer  from "./pages/AddCustomer";
+import GoldRate from './pages/GoldRate';
 function App() {
   return (
     <BrowserRouter>
@@ -17,17 +14,12 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/sidebar' element={< ButtonAppBar/>} />
-        <Route path='/reports' element={<Reports />} />
-        <Route path='/overview' element={<Overview />} />
-        <Route path='/reports/reports1' element={<ReportsOne />} />
-        <Route path='/reports/reports2' element={<ReportsTwo />} />
-        <Route path='/reports/reports3' element={<ReportsThree />} />
-        <Route path='/team' element={<Team />} />
-        
-
+        <Route path='/CustomerRegistration' element={<CustomerRegistration />} />
+        <Route path='/report' element={<Report />} />
+        <Route path='/AddCustomer' element={<AddCustomer />} />
+        <Route path='/GoldRate' element={<GoldRate />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

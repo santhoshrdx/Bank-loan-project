@@ -1,10 +1,8 @@
 import axios from 'axios';
-
 function Validation(values) {
   let error = {};
   const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 //   const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
-
   if (values.email === '') {
     error.email = 'Email should not be empty';
   } else if (!email_pattern.test(values.email)) {
@@ -12,7 +10,6 @@ function Validation(values) {
   } else {
     error.email = '';
   }
-
   if (values.password === '') {
     error.password = 'Password should not be empty';
 //   } else if (!password_pattern.test(values.password)) {
@@ -20,7 +17,6 @@ function Validation(values) {
   } else {
     error.password = '';
   }
-
   // Additional check: Validate against user credentials in the database
   if (error.email === '' && error.password === '') {
     axios
@@ -39,8 +35,6 @@ function Validation(values) {
         error.login = 'Login failed';
       });
   }
-
   return error;
 }
-
 export default Validation;

@@ -1,33 +1,14 @@
-import React from 'react';
-
-export const Reports = () => {
+import React from 'react'
+import Navbar from '../component/Navbar'
+import Box from "@mui/material/Box"
+function Report() {
   return (
-    <div className='reports'>
-      <h1>Reports</h1>
-    </div>
-  );
-};
+    <>
+    <Box sx={{ display: 'flex'}}></Box>
+    <Navbar />
+    <div>Report</div>
+    </>
+  )
+}
 
-export const ReportsOne = () => {
-  return (
-    <div className='reports'>
-      <h1>Reports/reports1</h1>
-    </div>
-  );
-};
-
-export const ReportsTwo = () => {
-  return (
-    <div className='reports'>
-      <h1>Reports/reports2</h1>
-    </div>
-  );
-};
-
-export const ReportsThree = () => {
-  return (
-    <div className='reports'>
-      <h1>Reports/reports3</h1>
-    </div>
-  );
-};
+export default Report
