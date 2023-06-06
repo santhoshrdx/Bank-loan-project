@@ -23,7 +23,7 @@ function AddCustomer() {
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Customer Name</Form.Label>
-            <Form.Control type="name" name="first_name" value="Customer Name"required  onChange="{handleChange}" className="form-control" />
+            <input type="text" class="form-control" placeholder="customer name" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Customer Id</Form.Label>

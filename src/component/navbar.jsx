@@ -125,6 +125,7 @@ export default function MiniDrawer() {
            <ListItemText primary={item.text} />
         </ListItemButton>
         </ListItem>
+        
       ))}
     </List>
   );
@@ -136,6 +137,7 @@ export default function MiniDrawer() {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
+        
           <IconButton
             color="inherit"
             aria-label="open drawer"
