@@ -17,7 +17,11 @@ function App() {
         <Route path='/CustomerRegistration' element={<CustomerRegistration />} />
         <Route path='/report' element={<Report />} />
         <Route path='/AddCustomer' element={<AddCustomer />} />
+<<<<<<< HEAD
         
+=======
+       
+>>>>>>> 469ae9d592663afa75eb8760097c780449feb7f2
       </Routes>
     </BrowserRouter>
   );

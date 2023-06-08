@@ -124,6 +124,7 @@ export default function Navbar() {
            <ListItemText primary={item.text} />
         </ListItemButton>
         </ListItem>
+        
       ))}
     </List>
   );
@@ -135,6 +136,7 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
+        
           <IconButton
             color="inherit"
             aria-label="open drawer"
