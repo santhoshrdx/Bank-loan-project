@@ -1,6 +1,13 @@
 import { Form, InputGroup, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Report.css';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Select from '../values/Boxr';
+import State from '../values/State';
+
+
 import {
     MDBCard,
     MDBCardBody,
@@ -23,17 +30,19 @@ function AddCustomer() {
     <Row className="mb-3">
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Customer Name</Form.Label>
-            <Form.Control type="name" name="first_name" value="Customer Name"required  onChange="{handleChange}" className="form-control" />
+            <input type="text" class="form-control" placeholder="customer name" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Customer Id</Form.Label>
-            <Form.Control type="name" name="last_name" value="Customer Id" required onChange="{handleChange}" className="form-control" />
+            <input type="text" class="form-control" placeholder="customer id" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formDate" className="col col-sm-4">
             <Form.Label>Date of Birth</Form.Label>
-            <Form.Control type="date"  onChange="{handleChange}" className="form-control" />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker />
+    </LocalizationProvider>
         </Form.Group>
     <Form.Group className=" col col-sm-4" controlId="formGridAddress1">
             <Form.Label>Gender</Form.Label>
@@ -48,13 +57,13 @@ function AddCustomer() {
             <Form.Label>Mobile Number</Form.Label>
             <InputGroup>
                 <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
-                <Form.Control aria-label="Mobile Number" type="mobile" aria-describedby="basic-addon1" className="form-control" name="mobile" value="Mobile no" required onChange="{handleChange}" />
+                <Form.Control aria-label="Mobile Number" type="mobile"  aria-describedby="basic-addon1" className="form-control" name="mobile" limit="Mobile no"  />
             </InputGroup>
         </Form.Group>
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Email</Form.Label>
             <InputGroup>
-                <Form.Control aria-label="Recipient's username" aria-describedby="basic-addon2" type="email" name="email" value="Enter email " onChange="{handleChange}" />
+                <Form.Control aria-label="Recipient's username" aria-describedby="basic-addon2" type="text" name="email" placeholder="Enter email"  />
                 <InputGroup.Text id="basic-addon2">@gmail.com</InputGroup.Text>
             </InputGroup>
         </Form.Group>
@@ -62,39 +71,27 @@ function AddCustomer() {
     <Row className="mb-3">
         <Form.Group className=" col col-sm-4" controlId="formGridAddress1">
             <Form.Label>Address Line1</Form.Label>
-            <Form.Control className="form-control" type="text" name="address1" value="Enter address1"required onChange="{handleChange}" />
+            <Form.Control className="form-control" type="text" name="address1" placeholder="enter address1"  />
         </Form.Group>
         <Form.Group className="col col-sm-4" controlId="formGridAddress2">
             <Form.Label>Address Line2</Form.Label>
-            <Form.Control className="form-control" name="address2" value=" Enter address2" onChange="{handleChange}" type="text" />
+            <Form.Control className="form-control" name="address2"  placeholder="enter address" />
         </Form.Group>
     </Row>
     <Row className="mb-3">
-        <Form.Group controlId="formGridCity" className="col col-sm-4">
-            <Form.Label>City</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control" name="city" value="enter city"required onChange="{handleChange}">
-                <option value="Choose...">Choose...</option>
-                <option value="tenkasi">Tenkasi</option>
-                <option value="ayukudi">Ayukudi</option>
-               
-            </Form.Select>
-        </Form.Group>
-        <Form.Group controlId="formGridState" className="col col-sm-4">
-            <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control" name="a_state" value="enter state"required onChange="{handleChange}">
-                <option value="Choose...">Choose...</option>
-                <option value="Delhi">TamilNadu</option>
-                <option value="Bombay">Bommbay</option>
-                <option value="New York">New York</option>
-                <option value="Kashmir">Kashmir</option>
-            </Form.Select>
-        </Form.Group>
+        <Select />
+        </Row>
+        <Row className="mb-3">
+
+        <State />
+        </Row>
         
-    </Row>
+        
+    
     <Row className="mb-3">
     <Form.Group controlId="formGridCountry" className="col col-sm-4">
     <Form.Label>Country</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control" name="country    " value="---country---"required onChange="{handleChange}">
+            <Form.Select defaultValue="Choose..." className="form-control" name="country    " value="---country---"required onClick="{handleChange}">
                 <option value="Choose...">Choose...</option>
                 <option value="India">India</option> 
             </Form.Select>
@@ -104,7 +101,7 @@ function AddCustomer() {
             <Form.Control type="date"  onChange="{handleChange}" className="form-control" />
         </Form.Group>        
     </Row>
-    <Row className="mb-3">
+    <Row className="mb-3"> 
         <Form.Group controlId="formGridC/O" className="col col-sm-2">
             <Form.Label>C/O</Form.Label>
             <Form.Select defaultValue="Choose..." className="form-control"  onChange="{handleChange}">

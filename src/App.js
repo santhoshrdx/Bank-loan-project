@@ -6,7 +6,7 @@ import ButtonAppBar from "./component/Navbar";
 import Report from "./pages/Report";
 import CustomerRegistration  from "./pages/CustomerRegistration";
 import AddCustomer  from "./pages/AddCustomer";
-import GoldRate from './pages/GoldRate';
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,9 +17,11 @@ function App() {
         <Route path='/CustomerRegistration' element={<CustomerRegistration />} />
         <Route path='/report' element={<Report />} />
         <Route path='/AddCustomer' element={<AddCustomer />} />
-        <Route path='/GoldRate' element={<GoldRate />} />
+        
       </Routes>
     </BrowserRouter>
   );
 }
 export default App;
+
+//<Route path='/GoldRate' element={<GoldRate />} />

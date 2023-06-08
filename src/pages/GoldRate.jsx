@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -18,11 +18,7 @@ export default function BasicPopover() {
     <div>
       <Card sx={{ maxWidth: 345 }}>
       
-       action={
-        <IconButton aria-label="settings">
-          <MoreVertIcon />
-        </IconButton>
-      }
+       
       <Button aria-describedby={id} variant="contained" onClick={handleClick}>
         Morning Gold Rate
       </Button>
@@ -75,8 +71,9 @@ export default function BasicPopover() {
     </Row>
         </Typography>
       </Popover>
+      </Card>
     </div>
     
-   </card> 
+ 
   );
 }
