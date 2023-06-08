@@ -16,6 +16,12 @@ import {
     MDBTable, MDBTableHead, MDBTableBody ,MDBCheckbox,MDBInput,  } from 'mdb-react-ui-kit';
 function AddCustomer() {
 
+  function handleMobileNumberChange(event) {
+    const input = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const maxLength = 10;
+    const sanitizedInput = input.slice(0, maxLength); // Limit the input to 10 digits
+    event.target.value = sanitizedInput; // Update the input value
+  }
   return (
    
     <form className="container" >
@@ -53,13 +59,27 @@ function AddCustomer() {
       </Form.Group>
     </Row>    
     <Row className="mb-3">
-        <Form.Group controlId="formBasicMobile" className="col col-sm-4">
-            <Form.Label>Mobile Number</Form.Label>
-            <InputGroup>
-                <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
-                <Form.Control aria-label="Mobile Number" type="mobile"  aria-describedby="basic-addon1" className="form-control" name="mobile" limit="Mobile no"  />
-            </InputGroup>
-        </Form.Group>
+    
+    <Form.Group controlId="formBasicMobile" className="col col-sm-4">
+  <Form.Label>Mobile Number</Form.Label>
+  <InputGroup>
+    <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
+    <Form.Control
+      aria-label="Mobile Number"
+      type="text"
+      aria-describedby="basic-addon1"
+      className="form-control"
+      name="mobile"
+      maxLength={10}
+      pattern="[0-9]{10}"
+      title="Mobile number should be 10 digits"
+      required
+      onChange={handleMobileNumberChange}
+    />
+  </InputGroup>
+</Form.Group>
+
+ 
         <Form.Group controlId="formBasicEmail" className="col col-sm-4">
             <Form.Label>Email</Form.Label>
             <InputGroup>

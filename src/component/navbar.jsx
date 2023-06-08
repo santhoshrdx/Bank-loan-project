@@ -108,7 +108,7 @@ export default function Navbar() {
       window.location.href = link;
     }
   };
-
+ 
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -116,19 +116,37 @@ export default function Navbar() {
   const DropdownList = ({ items }) => (
     <List>
       {items.map((item, index) => (
-        <ListItem disablePadding key={item.text} onClick={() => handleDrawerOpen(index, item.link)}>
-       <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
-         <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
-         {item.icon}
-         </ListItemIcon>
-           <ListItemText primary={item.text} />
-        </ListItemButton>
-        </ListItem>
-        
+        <React.Fragment key={item.text}>
+          <ListItem disablePadding onClick={() => handleDrawerOpen(index, item.link)}>
+            <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
+              <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItemButton>
+          </ListItem>
+          {item.dropdown && (
+            <List sx={{ paddingLeft: 2 }}>
+              {item.dropdown.map((nestedItem, nestedIndex) => (
+                <ListItem
+                  key={nestedItem.text}
+                  disablePadding
+                  onClick={() => handleDrawerOpen(nestedIndex, nestedItem.link)}
+                >
+                  <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
+                    <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
+                      {nestedItem.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={nestedItem.text} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </React.Fragment>
       ))}
     </List>
   );
-
 
 
   return (
@@ -178,11 +196,19 @@ export default function Navbar() {
               text: 'Loan Process',
               icon: <MailIcon />,
               dropdown: [
-                { text: 'Loan Approval', icon: <ArrowRightIcon color ="primary" /> ,link: '/loan-approval'},
-                { text: 'Repayment',icon: <ArrowRightIcon color ="primary" />  ,link: '/loan-repayment'},
+                {
+                  text: 'Loan Approval',
+                  icon: <ArrowRightIcon color="primary" />,
+                  dropdown: [
+                    { text: 'Add Loan', icon: <ArrowRightIcon color="primary" />, link: '/loan-approval/add-loan' },
+                    { text: 'Loan List', icon: <ArrowRightIcon color="primary" />, link: '/loan-approval/loan-list' },
+                  ],
+                },
+                { text: 'Repayment', icon: <ArrowRightIcon color="primary" />, link: '/loan-repayment' },
               ],
-            
             },
+            
+            
             {
               text: 'Repledge',
               icon: <MailIcon />,
