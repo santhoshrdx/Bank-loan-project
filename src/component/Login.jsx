@@ -2,8 +2,7 @@ import React, {  useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Validation from './LoginValidation';
 import axios from 'axios';
-
-
+import img1 from '../image/digigold.png';
 
 function Login() {
   
@@ -44,15 +43,19 @@ function Login() {
 
 
   return (
-    <div className='d-flex justify-content-center   row align-items-center vh-100' style={{backgroundColor:'#250563'}}>
+    <div className="row vh-100" style={{backgroundColor:'#250563'}}>
+    <div class="container h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-9 col-lg-6 col-xl-5">
+   <img src ={img1} class="image" alt="pop" align="left" width="750" height="750" margintop="2px" />
+     </div>
+      
     {/* <MediaQuery minWidth={768} maxWidth={1024}> */}
     <div className=' bg-transparent rounded w-25 row 'style={{ marginLeft: 'auto', marginRight: '90px'}} >      {/* code is modified here to align it right */}
         <form action='' onSubmit={handleSubmit}>
           <div className='row '>
-          <h2 className='btn btn-default  w-50  rounded-5 text-decoration-none  col-lg-5 fs-5 text-white' ><strong>Login</strong></h2>
+          <h2 className='btn btn-default  w-50  rounded-5 text-decoration-none  col-lg-5 fs-5 text-white' ><strong><justify>Login</justify></strong></h2>
        
-          <Link to='/signup' className='btn btn-default  w-50  rounded-5 text-decoration-none bg-warning col-lg-5 fs-5' > Register
-            </Link>
             </div>
             <br/>
             <div className='row'>
@@ -86,13 +89,17 @@ function Login() {
             <center><button type='submit' className=' d-flex btn btn-warning w-50 rounded-5 row align-item-center justify-content-center btn-lg fs-5 btn-hover'>
               Log in
             </button></center>
+            <br></br>
+            <Link to='/signup' className='letter  text-decoration-none text-white' >Create a new Account? Register
+            </Link>
             
            
           </form>
         </div>
         {/* </MediaQuery> */}
       </div>
-   
+     </div>
+     </div>
     );
   }
   

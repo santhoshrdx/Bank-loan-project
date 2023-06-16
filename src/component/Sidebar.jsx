@@ -6,6 +6,8 @@ import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
+import { ProSidebarProvider } from 'sidebar';
+import { Sidebar,useProSidebar } from 'Sidebar';
 
 const Nav = styled.div`
   background: #2596be;
@@ -20,6 +22,7 @@ const NavIcon = styled(Link)`
   font-size: 2rem;
   height: 80px;
   display: flex;
+  position: fixed;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -45,6 +48,8 @@ const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const { collapseSidebar } = useProSidebar();
   
 
   return (

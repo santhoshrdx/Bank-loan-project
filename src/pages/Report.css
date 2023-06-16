@@ -1,17 +1,25 @@
 .but{
-    margin-left: 150px;
+    margin-left:60px;
     width:150px;
-    border-radius: 10px;
-    font-size:20px;
-    text-align:center;
+    text-align:justify;
 }
-.table-content {
-    width: 450px;
-    margin: 50px auto;
-    text-align: center;
+.mb-3{
+    box-sizing: 40px;
+    padding-left: 400px;
+   
 }
-td {
-    width: 100px;
+.gold-rate-update{
+    box-sizing: 40px;
+    padding-left: 40px;
+   
 }
-
-
+.table{    
+    border: 2px; 
+    border-spacing:20px; 
+    margin-left: auto;  
+    margin-right: auto;  
+    border-collapse: collapse;    
+    width: 50px;  
+    text-align:center;  
+    font-size: 17px;  
+}    

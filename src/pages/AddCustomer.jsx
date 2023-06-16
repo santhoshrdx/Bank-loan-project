@@ -1,32 +1,39 @@
+import  React from 'react';
 import { Form, InputGroup, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Report.css';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Select from '../values/Boxr';
-import State from '../values/State';
-
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 import {
     MDBCard,
     MDBCardBody,
     MDBCardTitle,
     MDBRadio,
-    MDBTable, MDBTableHead, MDBTableBody ,MDBCheckbox,MDBInput,  } from 'mdb-react-ui-kit';
+    MDBTable, MDBTableHead, MDBTableBody ,MDBInput,
+  } from 'mdb-react-ui-kit';
 function AddCustomer() {
-
   function handleMobileNumberChange(event) {
-    const input = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const input = event.target.value.replace(/\D/g, '');
     const maxLength = 10;
-    const sanitizedInput = input.slice(0, maxLength); // Limit the input to 10 digits
-    event.target.value = sanitizedInput; // Update the input value
+    const sanitizedInput = input.slice(0, maxLength); 
+    event.target.value = sanitizedInput; 
   }
+  const [Document, setDocument] = React.useState('');
+
+  const handleChange = (event) => {
+    setDocument(event.target.value);
+  };
+  
   return (
-   
-    <form className="container" >
+    
+    <form className="container">
     <br></br>        
-    <MDBCard >
+    <MDBCard>
         <MDBCardBody>
         <Row className="mb-3">
     
@@ -34,23 +41,20 @@ function AddCustomer() {
     </Row>
     <br></br>
     <Row className="mb-3">
-        <Form.Group controlId="formBasicEmail" className="col col-sm-4">
+        <Form.Group controlId="formcustomername" className="col col-sm-4">
             <Form.Label>Customer Name</Form.Label>
-            <input type="text" class="form-control" placeholder="customer name" aria-label="Username" aria-describedby="basic-addon1"/>
+            <input type="text" class="form-control" placeholder="Customer name" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
-        <Form.Group controlId="formBasicEmail" className="col col-sm-4">
+        <Form.Group controlId="formcustomer-id" className="col col-sm-4">
             <Form.Label>Customer Id</Form.Label>
-            <input type="text" class="form-control" placeholder="customer id" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group controlId="formDate" className="col col-sm-4">
             <Form.Label>Date of Birth</Form.Label>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker />
-    </LocalizationProvider>
+            <input type="date" class="form-control" placeholder="Date of Birth" aria-label="Username" aria-describedby="basic-addon1"/>
         </Form.Group>
-    <Form.Group className=" col col-sm-4" controlId="formGridAddress1">
+    <Form.Group className=" col col-sm-4" controlId="formGridGender">
             <Form.Label>Gender</Form.Label>
             <br></br>  
       <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Male' inline />
@@ -59,10 +63,9 @@ function AddCustomer() {
       </Form.Group>
     </Row>    
     <Row className="mb-3">
-    
-    <Form.Group controlId="formBasicMobile" className="col col-sm-4">
-  <Form.Label>Mobile Number</Form.Label>
-  <InputGroup>
+    <Form.Label>Mobile Number</Form.Label>
+        <Form.Group controlId="formBasicMobile" placeholder="Mobile No" className="col col-sm-4">
+        <InputGroup>
     <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
     <Form.Control
       aria-label="Mobile Number"
@@ -76,42 +79,53 @@ function AddCustomer() {
       required
       onChange={handleMobileNumberChange}
     />
-  </InputGroup>
-</Form.Group>
-
- 
-        <Form.Group controlId="formBasicEmail" className="col col-sm-4">
-            <Form.Label>Email</Form.Label>
-            <InputGroup>
-                <Form.Control aria-label="Recipient's username" aria-describedby="basic-addon2" type="text" name="email" placeholder="Enter email"  />
-                <InputGroup.Text id="basic-addon2">@gmail.com</InputGroup.Text>
-            </InputGroup>
+  </InputGroup>   
+        </Form.Group>
+        <Form.Group controlId="formBasicPhoneno" className="col col-sm-4">
+        <Box sx={{ m:1}}>
+            <FormControl className="col col-sm-10">
+            <Form.Label>Phone No</Form.Label>
+            <InputLabel id="demo-simple-select-label"></InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Document}
+          label="Document"
+          onChange={handleChange}
+          style={{ minWidth: '150px', height: '38px' }}
+        >
+          <MenuItem value="Residence No">Residence No</MenuItem>
+          <MenuItem value="Office No">Office No</MenuItem>
+        </Select>
+        </FormControl>
+        </Box>       
         </Form.Group>
     </Row>
     <Row className="mb-3">
         <Form.Group className=" col col-sm-4" controlId="formGridAddress1">
             <Form.Label>Address Line1</Form.Label>
-            <Form.Control className="form-control" type="text" name="address1" placeholder="enter address1"  />
+             <input type="text" class="form-control" placeholder="Address line1"  aria-describedby="basic-addon1"/>
         </Form.Group>
         <Form.Group className="col col-sm-4" controlId="formGridAddress2">
             <Form.Label>Address Line2</Form.Label>
-            <Form.Control className="form-control" name="address2"  placeholder="enter address" />
+             <input type="text" class="form-control" placeholder="Address line2"  aria-describedby="basic-addon1"/>
         </Form.Group>
     </Row>
     <Row className="mb-3">
-        <Select />
-        </Row>
-        <Row className="mb-3">
-
-        <State />
-        </Row>
+    <Form.Group controlId="formCity" className="col col-sm-4">
+            <Form.Label>City</Form.Label>
+            <input type="text" class="form-control" placeholder="City" aria-label="Username" aria-describedby="basic-addon1"/>
+        </Form.Group>
+        <Form.Group controlId="formGridState" className="col col-sm-4">
+            <Form.Label>State</Form.Label>
+            <input type="text" class="form-control" placeholder="State" aria-label="Username" aria-describedby="basic-addon1"/>
+        </Form.Group>
         
-        
-    
+    </Row>
     <Row className="mb-3">
     <Form.Group controlId="formGridCountry" className="col col-sm-4">
     <Form.Label>Country</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control" name="country    " value="---country---"required onClick="{handleChange}">
+            <Form.Select defaultValue="Choose..." className="form-control" name="country    " value="---country---"required onChange="{handleChange}">
                 <option value="Choose...">Choose...</option>
                 <option value="India">India</option> 
             </Form.Select>
@@ -121,30 +135,52 @@ function AddCustomer() {
             <Form.Control type="date"  onChange="{handleChange}" className="form-control" />
         </Form.Group>        
     </Row>
-    <Row className="mb-3"> 
+    <Row className="mb-3">
         <Form.Group controlId="formGridC/O" className="col col-sm-2">
+        <Box sx={{ mr:2}}>
+            <FormControl className="col col-sm-9">
             <Form.Label>C/O</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control"  onChange="{handleChange}">
-               
-                <option value="husband">Husband</option>
-                <option value="father">Father</option>
-               
-            </Form.Select>
+            <InputLabel id="demo-simple-select-label"></InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Document}
+          label="Document"
+          onChange={handleChange}
+          style={{ minWidth: '120px', height: '38px' }}
+        >
+          <MenuItem value="Father">Father</MenuItem>
+          <MenuItem value="Husband">Husband</MenuItem>
+        </Select>
+        </FormControl>
+        </Box>
         </Form.Group>
         <Form.Group className="col col-sm-2" controlId="formGridName">
             <Form.Label>Name</Form.Label>
             <Form.Control className="form-control" name="name" value="Name" onChange="{handleChange}" type="text" />
         </Form.Group>
         <Form.Group controlId="formGridNominee" className="col col-sm-2">
+        <Box sx={{ mr:2}}>
+            <FormControl className="col col-sm-9">
+            <Form.Group controlId="formGridNominee" className="col col-sm-4">
             <Form.Label>Nominee</Form.Label>
-            <Form.Select defaultValue="Choose..." className="form-control"  onChange="{handleChange}">
-                <option value="husband">Husband</option>
-                <option value="father">Father</option>
-                <option value="son">Son</option>
-                <option value="daughter">Daughter</option>
-                <option value="mother">Mother</option>
-               
-            </Form.Select>
+            <InputLabel id="demo-simple-select-label"></InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Document}
+          label="Document"
+          onChange={handleChange}
+          style={{ minWidth: '120px', height: '38px' }}
+        >
+          <MenuItem value="Father">Father</MenuItem>
+          <MenuItem value="Husband">Husband</MenuItem>
+          <MenuItem value="Son">Son</MenuItem>
+          <MenuItem value="Daughter">Daughter</MenuItem>
+        </Select>
+        </Form.Group>
+        </FormControl>
+        </Box>
         </Form.Group>
         <Form.Group className="col col-sm-2" controlId="formGridName">
             <Form.Label>Nominee Name</Form.Label>
@@ -164,8 +200,7 @@ function AddCustomer() {
       <MDBTableHead>
         <tr>
           <th scope='col'>DOCUMENT</th>
-          <th scope='col'>ID</th>
-          <th scope='col'>ADDRESS</th>
+          <th scope='col'>Document Type</th>
           <th scope='col'>DOCUMENT COPY</th>
           <th scope='col'>EXPIRE DATE</th>
           <th scope='col'>DOCUMENT NO</th>
@@ -173,59 +208,61 @@ function AddCustomer() {
       </MDBTableHead>
       <MDBTableBody>
         <tr>
-          <th scope='col'>Aadhar card</th>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
+          <th scope='col'>
+          <Box sx={{ mr:1}}>
+            <FormControl className="col col-sm-10">
+            <Form.Group controlId="formGridNominee" className="col col-sm-3">
+            <InputLabel id="demo-simple-select-label">Document</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Document}
+          label="Document"
+          onChange={handleChange}
+          style={{ minWidth: '150px', height: '50px' }}
+        >
+          <MenuItem value="Aadhar Card">Aadhar card</MenuItem>
+          <MenuItem value="Pan Card">Pan Card</MenuItem>
+          <MenuItem value="Voter Id">Voter Id</MenuItem>
+          <MenuItem value="Driving License">Driving License</MenuItem>
+          <MenuItem value="Ration Card">Ration Card</MenuItem>
+        </Select>
+        </Form.Group>
+        </FormControl>
+        </Box>
+            </th>
+            <Box sx={{ mr:1}}>
+            <FormControl className="col col-sm-10">
+            <Form.Group controlId="formGridNominee" className="col col-sm-3">
+            <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Document}
+          label="Document"
+          onChange={handleChange}
+          style={{ minWidth: '150px', height: '50px' }}
+        >
+          <MenuItem value="ID">ID</MenuItem>
+          <MenuItem value="Address">Address</MenuItem>
+        </Select>
+        </Form.Group>
+        </FormControl>
+        </Box>
           <td><input type="file" class="form-control-file" id="exampleFormControlFile1"></input></td>
           <td><input type="date" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><MDBInput value='Document No' id='form1' type='text' /></td>
-          
+          <td><MDBInput value='Document No' id='form1' type='text' /></td>  
         </tr>
-        <tr>
-          <th scope='row'>Pan Card</th>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><input type="file" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><input type="date" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><MDBInput value='Document No' id='form1' type='text' /></td>
-        </tr>
-        <tr>
-          <th scope='row'>Voter Id</th>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><input type="file" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><input type="date" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><MDBInput value='Document No' id='form1' type='text' /></td>
-        </tr>
-        <tr>
-          <th scope='row'>Driving License</th>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><input type="file" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><input type="date" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><MDBInput value='Document No' id='form1' type='text' /></td>
-        </tr>
-        <tr>
-          <th scope='row'>Ration Card</th>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><MDBCheckbox name='flexCheck' value='' id='flexCheckDefault'  /></td>
-          <td><input type="file" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><input type="date" class="form-control-file" id="exampleFormControlFile1"></input></td>
-          <td><MDBInput value='Document No' id='form1' type='text' /></td>
-        </tr>
+
       </MDBTableBody>
     </MDBTable>
-        
+    <Button variant="contained" endIcon={<AddIcon />}>Add</Button> 
       </MDBCardBody>
     </MDBCard>
     <br></br>
     <MDBCard>
       <MDBCardBody>
-        <MDBCardTitle>Employee details</MDBCardTitle>
-        <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Employed' inline />
-        <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Business' inline />
-        <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Unemployed' inline />
-        <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='House Wife' inline />
+        
         <Row className="mb-3">
         <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
             <br></br>
@@ -238,7 +275,6 @@ function AddCustomer() {
     <br></br>
 </form>
 
-
   );
 }
-export default AddCustomer;
+    export default AddCustomer;

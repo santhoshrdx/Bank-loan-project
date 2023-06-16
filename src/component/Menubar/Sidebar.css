@@ -1,0 +1,54 @@
+/* Sidebar.css */
+
+.sidebar-icon {
+    font-size: 24px;
+    font-weight: 600;
+    color: lightskyblue;
+  }
+  .side-bar{
+    background-color: '#ffffff' !important;
+    border: 1px;
+    border-radius:10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: fixed;
+
+  }
+  
+  .collapse-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+    color: lightskyblue;
+    font-size: 24px;
+    font-weight: 600;
+    border:1px;
+    border-radius: 3px;
+    background-color: aliceblue;
+  }
+  .side-bar.collapsed {
+    width: 80px;
+  }  
+ 
+  
+  .menu-item {
+    position: relative;
+    padding-left: 10px;
+  }
+  .nav-bar{
+    background-color: 'blue';
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  
+  
+  
+  
+  
+  

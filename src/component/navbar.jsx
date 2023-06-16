@@ -20,12 +20,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PaymentIcon from '@mui/icons-material/Payment';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import CreditScoreTwoToneIcon from '@mui/icons-material/CreditScoreTwoTone';
+import HandshakeTwoToneIcon from '@mui/icons-material/HandshakeTwoTone';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import GavelRoundedIcon from '@mui/icons-material/GavelRounded';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -95,7 +99,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 
-export default function Navbar() {
+export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [selectedItem, setSelectedItem] = React.useState(null);
@@ -108,7 +112,7 @@ export default function Navbar() {
       window.location.href = link;
     }
   };
- 
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -116,37 +120,18 @@ export default function Navbar() {
   const DropdownList = ({ items }) => (
     <List>
       {items.map((item, index) => (
-        <React.Fragment key={item.text}>
-          <ListItem disablePadding onClick={() => handleDrawerOpen(index, item.link)}>
-            <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
-              <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-          {item.dropdown && (
-            <List sx={{ paddingLeft: 2 }}>
-              {item.dropdown.map((nestedItem, nestedIndex) => (
-                <ListItem
-                  key={nestedItem.text}
-                  disablePadding
-                  onClick={() => handleDrawerOpen(nestedIndex, nestedItem.link)}
-                >
-                  <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
-                    <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
-                      {nestedItem.icon}
-                    </ListItemIcon>
-                    <ListItemText primary={nestedItem.text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </React.Fragment>
+        <ListItem disablePadding key={item.text} onClick={() => handleDrawerOpen(index, item.link)}>
+       <ListItemButton sx={{ justifyContent: 'center', px: 2.5 }}>
+         <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center' }}>
+         {item.icon}
+         </ListItemIcon>
+           <ListItemText primary={item.text} />
+        </ListItemButton>
+        </ListItem>
       ))}
     </List>
   );
+
 
 
   return (
@@ -154,7 +139,6 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-        
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -194,41 +178,34 @@ export default function Navbar() {
             },
             {
               text: 'Loan Process',
-              icon: <MailIcon />,
+              icon: <CreditScoreTwoToneIcon color="primary" />,
               dropdown: [
-                {
-                  text: 'Loan Approval',
-                  icon: <ArrowRightIcon color="primary" />,
-                  dropdown: [
-                    { text: 'Add Loan', icon: <ArrowRightIcon color="primary" />, link: '/loan-approval/add-loan' },
-                    { text: 'Loan List', icon: <ArrowRightIcon color="primary" />, link: '/loan-approval/loan-list' },
-                  ],
-                },
-                { text: 'Repayment', icon: <ArrowRightIcon color="primary" />, link: '/loan-repayment' },
+                { text: 'Loan Approval', icon: <ArrowRightIcon color ="primary" /> ,link: '/loan-approval'},
+                { text: 'Repayment',icon: <ArrowRightIcon color ="primary" />  ,link: '/loan-repayment'},
               ],
+            
             },
-            
-            
             {
               text: 'Repledge',
-              icon: <MailIcon />,
+              icon: <HandshakeTwoToneIcon color="primary" />,
               dropdown:[
                 { text: 'Owner', icon: <ArrowRightIcon color ="primary" />,link :'/repledge-owner'  },
                 { text: 'Customer', icon: <ArrowRightIcon color ="primary" />,link:'/repledge-customer' },
               ]
             },
-            { text: 'Gold Rate Updates',  icon: < CurrencyRupeeIcon color ="primary" />,link:'/goldrate' },
+            { text: 'Gold Rate Updates',  icon: < CurrencyRupeeIcon color ="primary" />,link:'/GoldRateUpdate' },
             {
               text: 'Payroll',
               icon: <PaymentIcon color ="primary" />,
               dropdown: [
-                { text: 'Attendance',icon: <ArrowRightIcon color ="primary" /> ,link:'/payroll-attendance'},
-                { text: 'Salary', icon: <ArrowRightIcon color ="primary" /> ,link:'/payroll-salary' },
+                { text: 'Attendance',icon: <ArrowRightIcon color ="primary" /> ,link:'/Attendance'},
+                { text: 'Salary', icon: <ArrowRightIcon color ="primary" /> ,link:'/Salary' },
+               
               ],
             },
             {
               text: 'Accounts',
-              icon: <MailIcon />,
+              icon: <AccountBoxIcon color="primary"/>,
               dropdown:  [
                 { text: 'Cash Scroll', icon: <ArrowRightIcon color ="primary" />,link:'/cash-scroll' },
                 { text: 'Transfer Scroll', icon: <ArrowRightIcon color ="primary" />,link:'/transfer-scroll' },
@@ -236,7 +213,7 @@ export default function Navbar() {
             },
             {
               text: 'Master',
-              icon: <InboxIcon />,
+              icon: <EngineeringIcon color="primary" />,
               dropdown: [
                 { text: 'Jewel Type',icon: <ArrowRightIcon color ="primary" />,link:'/jewel-type' },
                 { text: 'City', icon: <ArrowRightIcon color ="primary" /> ,link:'/city'},
@@ -261,7 +238,7 @@ export default function Navbar() {
             },
             {
               text: 'Employee Registration',
-              icon: <InboxIcon />,
+              icon: <PersonAddAlt1Icon color="primary" />,
             
               dropdown: [
                 { text: 'Employee Registration', icon: <ArrowRightIcon color ="primary" /> ,link:'/employee-reg'},
@@ -270,7 +247,7 @@ export default function Navbar() {
             },
             {
               text: 'Auctions',
-              icon: <MailIcon />,
+              icon: <GavelRoundedIcon color="primary"/>,
               dropdown: [
                 { text: 'Auctioned Loan', icon: <ArrowRightIcon color ="primary" />,link:'/auctioned-loan' },
                 { text: 'Scheduled Loan', icon: <ArrowRightIcon color ="primary" />,link:'/scheduled-loan' },
