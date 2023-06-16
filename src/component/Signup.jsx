@@ -17,7 +17,7 @@ function Signup(){
 
  const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8081/signup',values)
+    axios.post('http://localhost:8000/api/signup',values)
     .then(res => console.log("SUCCESSFUL"))
     .catch(err => console.log(err));
  }
