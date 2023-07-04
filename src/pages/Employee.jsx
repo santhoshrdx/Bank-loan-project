@@ -50,12 +50,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function CustomerRegistration() {
+export default function EmployeeRegistration() {
   return (
-
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          
+        
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -66,8 +67,8 @@ export default function CustomerRegistration() {
             />
 
           </Search>
-          <Link to='/AddCustomer' className='but btn-default rounded-5 text-decoration-none bg-white' >  Add customer</Link>
-          <Link to='/CustomerList' className='but btn-default rounded-5 text-decoration-none bg-white' >CustomerList</Link>
+          <Link to='/EmployeeRegistration' className='but btn-default rounded-5 text-decoration-none bg-white' ><EmployeeRegistration></EmployeeRegistration></Link>
+
         </Toolbar>
       </AppBar>
     </Box>

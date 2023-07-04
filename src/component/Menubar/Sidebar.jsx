@@ -33,24 +33,25 @@ export default function Side() {
         </div>
       <Menu transitionDuration={200}>
        
-      <MenuItem component={<Link to="/" />} icon={< TfiHome  className="sidebar-icon"/>}   >DashBoard</MenuItem>
+      <MenuItem component={<Link to="/" />} icon={< TfiHome  className="sidebar-icon"/>}  >DashBoard</MenuItem>
 
       <SubMenu  icon={<BsPeople  className="sidebar-icon"/>} label=" Customer Registration"> 
       <MenuItem component={<Link to="/AddCustomer" />} icon={< IoIosArrowForward/>}> Add Customer</MenuItem>
-      <MenuItem component={<Link to="/" />} icon={< IoIosArrowForward/>}> View Customer List</MenuItem>
+      <MenuItem component={<Link to="/CustomerList" />} icon={< IoIosArrowForward/>}>CustomerList</MenuItem>
+      
       </SubMenu>
     
      <SubMenu  label="Loan Process" icon={<  TbMoneybag  className="sidebar-icon"/>} >
-     <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Loan Approval</MenuItem>
+     <MenuItem component={<Link to="/LoanProcess" />}icon={< IoIosArrowForward/>}> Loan Approval</MenuItem>
       <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Repayment</MenuItem>   
      </SubMenu>
 
      <SubMenu label="Repledge" icon={< FaRegHandPaper  className="sidebar-icon"/>} >
-     <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Owner</MenuItem>
-     <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Customer</MenuItem>    
+     <MenuItem component={<Link to="/Owner" />}icon={< IoIosArrowForward/>}> Owner</MenuItem>
+     <MenuItem component={<Link to="/Repledge_Customer" />}icon={< IoIosArrowForward/>}> Customer</MenuItem>    
      </SubMenu>
 
-     <MenuItem component={<Link to="/" />} icon={<  AiOutlineGold  className="sidebar-icon"/>}> Gold Rate Update</MenuItem>
+     <MenuItem component={<Link to="/GoldRateUpdate"/>} icon={<  AiOutlineGold  className="sidebar-icon"/>}> Gold Rate Update</MenuItem>
 
       <SubMenu label="PayRoll"icon={< MdOutlinePayments  className="sidebar-icon" />} >
       <MenuItem component={<Link to="/Attendance" />}icon={< IoIosArrowForward/>}>Attendance</MenuItem>
@@ -109,8 +110,8 @@ export default function Side() {
           <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}>Notification</MenuItem>
           <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Message</MenuItem>
           </SubMenu>
-          <SubMenu label="Employee Registration" icon={<IoMdPersonAdd  className="sidebar-icon"/>}>
-          <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}>Employee Registration</MenuItem>
+          <SubMenu label="EmployeeRegistration" icon={<IoMdPersonAdd  className="sidebar-icon"/>}>
+          <MenuItem component={<Link to="/EmployeeRegistration" />}icon={< IoIosArrowForward/>}>EmployeeRegistration</MenuItem>
           <MenuItem component={<Link to="/" />}icon={< IoIosArrowForward/>}> Employee Details</MenuItem>
           </SubMenu>
           <SubMenu label="Auctions" icon={<RiAuctionLine  className="sidebar-icon"/>}>
