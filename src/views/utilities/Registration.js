@@ -1,61 +1,46 @@
-import { Paper } from '@mui/material';
+import React from 'react';
 
-import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 
-import FormControl from '@mui/material/FormControl';
+import { Form, InputGroup, Row, Col } from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import InputLabel from '@mui/material/InputLabel';
 
 import MenuItem from '@mui/material/MenuItem';
 
+import FormControl from '@mui/material/FormControl';
+
+import Box from '@mui/material/Box';
+
 import Select from '@mui/material/Select';
+
+import { useState } from 'react';
 
 import axios from 'axios';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Paper, Container, Grid } from '@mui/material';
 
-import {
-
-  MDBCard,
-
-  MDBCardBody,
-
-  MDBCardTitle,
-
-  MDBInput,
-
-  MDBRadio,
-
-  MDBTable,
-
-  MDBTableBody,
-
-  MDBTableHead,
-
-} from 'mdb-react-ui-kit';
-
-import { useState } from "react";
-
-import { Form, InputGroup, Row } from 'react-bootstrap';
-
-//import './Report.css';
-
-
-
+import { MDBCardBody, MDBCardTitle, MDBRadio, MDBTable, MDBTableHead, MDBTableBody, MDBInput } from 'mdb-react-ui-kit';
 
 const AddCustomer = () => {
-
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage1, setSelectedImage1] = useState(null);
+  const [selectedImage2, setSelectedImage2] = useState(null);
 
   const [customerData, setCustomerData] = useState({
-
     customer_name: '',
 
     date_of_birth: '',
 
     gender: '',
+    phonenumber: '',
+    phonenumber_type: '',
 
     mobile_number: '',
+
+    number: '',
 
     address_line_one: '',
 
@@ -76,62 +61,48 @@ const AddCustomer = () => {
     nominee_type: '',
 
     nominee_name: '',
-
-    Document:'',
-
-    Document_type:'',
-
-    Document_copy:'',
-
-    Expire_data:'',
-
-    Document_number:'',
-
-    Document1:'',
-
-    Document_type1:'',
-
-    Document_copy1:'',
-
-    Expire_date1:'',
-
-    Document_number1:'',
-
+    document1: '',
+    document_type1: '',
+    document_copy1: '',
+    expire_date1: '',
+    document_number1: '',
+    document2: '',
+    document_type2: '',
+    document_copy2: '',
+    expire_date2: '',
+    document_number2: ''
   });
 
-
-
-
   const handleImageChange = (event) => {
-
     setSelectedImage(event.target.files[0]);
-
+  };
+  const handleImageChange1 = (event) => {
+    setSelectedImage1(event.target.files[0]);
   };
 
-
-
+  const handleImageChange2 = (event) => {
+    setSelectedImage2(event.target.files[0]);
+  };
 
   const handleChange = (event) => {
-
     setCustomerData({
-
       ...customerData,
 
       [event.target.name]: event.target.value
-
     });
-
   };
 
-
-
-
-  const paperStyle={padding: 2, height: '195vh',width: '1400',margin: '10px ',display: 'flex',flexDirection: 'column',justifyContent: 'center',alignItems: 'center'}
-
- 
+  // const paperStyle = {
+  //   height: '195vh',
+  //   width: '1400',
+  //   margin: '5px ',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center'
+  // };
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
 
     const formData = new FormData();
@@ -143,6 +114,8 @@ const AddCustomer = () => {
     formData.append('date_of_birth', customerData.date_of_birth);
 
     formData.append('gender', customerData.gender);
+    formData.append('phonenumber', customerData.phonenumber);
+    formData.append('phonenumber_type', customerData.phonenumber_type);
 
     formData.append('mobile_number', customerData.mobile_number);
 
@@ -166,679 +139,620 @@ const AddCustomer = () => {
 
     formData.append('nominee_name', customerData.nominee_name);
 
-    formData.append('document', customerData.Document);
+    formData.append('document1', customerData.document1);
 
-    formData.append('document_type', customerData.Document_type);
+    formData.append('document_type1', customerData.document_type1);
 
-    formData.append('document_copy', customerData.Document_copy);
+    formData.append('document_copy1', selectedImage1);
 
-    formData.append('expire_date', customerData.Expire_date);
+    formData.append('expire_date1', customerData.expire_date1);
 
-    formData.append('document_number', customerData.Document_number);
+    formData.append('document_number1', customerData.document_number1);
 
-    formData.append('document', customerData.Document1);
+    formData.append('document2', customerData.document2);
 
-    formData.append('document_type', customerData.Document_type1);
+    formData.append('document_type2', customerData.document_type2);
 
-    formData.append('document_copy', customerData.Document_copy1);
+    formData.append('document_copy2', selectedImage2);
 
-    formData.append('expire_date', customerData.Expire_date1);
+    formData.append('expire_date2', customerData.expire_date2);
 
-    formData.append('document_number', customerData.Document_number1);
+    formData.append('document_number2', customerData.document_number2);
 
-    axios.post('http://localhost:8000/api//customer', formData)
+    axios
+      .post('http://localhost:8000/api/customer', formData)
 
-    // .then((Response) => {
+      .then((response) => {})
 
-       
-
-    //   })
-
-    //   .catch((error) => {
-
-    //     // Handle error
-
-    //   });
-
-
-
+      .catch((error) => {});
 
     const { name, value } = event.target;
 
-    setCustomerData(prevData => ({
-
+    setCustomerData((prevData) => ({
       ...prevData,
 
       [name]: value
-
     }));
-
-  };    
-
-
-
+  };
 
   const responsivePadding = {
-
     padding: '20px',
 
     '@media (max-width: 600px)': {
-
-      padding: '10px',
-
+      padding: '10px'
     },
 
     '@media (max-width: 400px)': {
-
-      padding: '5px',
-
-    },
-
+      padding: '5px'
+    }
   };
 
+  /*
+
+      var tableContainer = document.getElementById('table-container');
+
+      var table = tableContainer.querySelector('table');
+
+      var lastRow = table.querySelector('tbody tr:last-child');
+
+ 
+
+      var newRow = lastRow.cloneNode(true);
+
+   
+
+      var inputFields = newRow.querySelectorAll('input');
+
+      inputFields.forEach(function (input) {
+
+        input.value = '';
+
+      });
+
+      table.querySelector('tbody').appendChild(newRow);
+
+    */
+
   return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <div style={{ flex: 1, overflow: 'auto', paddingLeft: '1px', display: 'flex' }}>
+        <form className="container" onSubmit={handleSubmit}>
+          <Paper elevation={20} style={{ width: '100%', height: '1300px', marginTop: '04rem', ...responsivePadding }}>
+            <Container maxWidth="lg">
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Form.Label className="mb">
+                    <br></br>
+                    <h3><b>Personal Details</b></h3>
+                  </Form.Label>
 
-    <div style={{display:'flex',height:'100vh'}} >
+                  <hr className="hori-col-3" />
 
-    <div style={{flex: 1,overflow:'auto',paddingLeft:'1px',display:'flex'}}>
+                  <MDBCardBody>
+                    <input
+                      type="file"
+                      className="form-control-file"
+                      id="exampleFormControlFile1"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      required
+                    />
 
-    <Paper elevation={20} style={{...paperStyle, ...responsivePadding}}>
+                    <br />
 
-    <form className="container" onSubmit={handleSubmit}>
+                    <Row className="mb-2">
+                      <Form.Group controlId="formcustomername" className="col col-sm-6">
+                        <Form.Label>
+                          Customer Name<span style={{ color: 'red' }}>*</span>
+                        </Form.Label>
 
-    <br></br>        
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Customer name"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                          name="customer_name"
+                          value={customerData.customer_name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
 
-    <MDBCard style={{ ...responsivePadding}}>
+                      <Form.Group controlId="formDate" className="col col-sm-6">
+                        <Form.Label>
+                          Date of Birth<span style={{ color: 'red' }}>*</span>
+                        </Form.Label>
 
-    <Form.Label className="mb"><b>Personal Details</b></Form.Label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          placeholder="Date of Birth"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                          name="date_of_birth"
+                          value={customerData.date_of_birth}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+                    </Row>
 
-    <hr className='hori-col-3'></hr>
+                    <Row className="mb-2">
+                      <Form.Group controlId="formGridgender" className="col col-sm-6">
+                        <Form.Label>
+                          Gender<span style={{ color: 'red' }}>*</span>
+                        </Form.Label>
 
-        <MDBCardBody>
+                        <Form.Select
+                          defaultValue="Choose..."
+                          className="form-control"
+                          name="gender"
+                          value={customerData.gender}
+                          onChange={handleChange}
+                          required 
+                        >
+                               <option value="Choose"></option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </Form.Select>
+                      </Form.Group>
 
-        <Row className="mb-2">
+                      <Form.Group className="col col-sm-6" controlId="formGridName">
+                        <Form.Label>Mobile Number<span style={{ color: 'red' }}>*</span></Form.Label>
 
-    <div className="Container">
+                        <InputGroup>
+                          <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
 
-     
+                          <Form.Control
+                            className="form-control"
+                            type="text"
+                            name="mobile_number"
+                            value={customerData.mobile_number}
+                            onChange={handleChange}required
+                            placeholder="Mobile Number"
+                          />
+                        </InputGroup>
+                      </Form.Group>
+                    </Row>
 
+                    <Row className="mb-2">
+                      <Form.Group controlId="formGridgender" className="col col-sm-6">
+                        <Form.Label>Phone Number Type<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Select
+                          defaultValue="Choose..."
+                          className="form-control"
+                          name="phonenumber_type"
+                          value={customerData.phonenumber_type}
+                          onChange={handleChange}required
+                        >     <option value="Choose"></option>
+                          <option value="Office no">Office no</option>
+                          <option value="Residence no">Residence no</option>
+                          <option value=" None">None</option>
+                        </Form.Select>
+                      </Form.Group>
+
+                      <Form.Group className="col col-sm-6" controlId="formGridName">
+                        <Form.Label>Phone Number<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <InputGroup>
+                          <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
+
+                          <Form.Control
+                            className="form-control"
+                            type="text"
+                            name="phonenumber"
+                            value={customerData.phonenumber}
+                            onChange={handleChange}required
+                            placeholder="Mobile Number"
+                          />
+                        </InputGroup>
+                      </Form.Group>
+                    </Row>
+
+                    <Row className="mb-2">
+                      <Form.Group controlId="formGridAddress1" className="col col-sm-6">
+                        <Form.Label>Address Line1<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Address line1"
+                          aria-describedby="basic-addon1"
+                          name="address_line_one"
+                          value={customerData.address_line_one}
+                          onChange={handleChange}required
+                        />
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridAddress2" className="col col-sm-6">
+                        <Form.Label>Address Line2<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Address line2"
+                          aria-describedby="basic-addon1"
+                          name="address_line_two"
+                          value={customerData.address_line_two}
+                          onChange={handleChange}required
+                        />
+                      </Form.Group>
+                    </Row>
+
+                    <Row className="mb-2">
+                      <Form.Group controlId="formCity" className="col col-sm-6">
+                        <Form.Label>City<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="City"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                          name="city"
+                          value={customerData.city}
+                          onChange={handleChange}required
+                        />
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridState" className="col col-sm-6">
+                        <Form.Label>State<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="State"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                          name="state"
+                          value={customerData.state}
+                          onChange={handleChange}required
+                        />
+                      </Form.Group>
+                    </Row>
+
+                    <Row className="mb-2">
+                      <Form.Group controlId="formGridCountry" className="col col-sm-6">
+                        <Form.Label>Country<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Select
+                          defaultValue="Choose..."
+                          className="form-control"
+                          name="country"
+                          value={customerData.country}
+                          onChange={handleChange}required
+                        >
+                          <option value="Choose..."></option>
+
+                          <option value="India">India</option>
+                        </Form.Select>
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridState" className="col col-sm-6">
+                        <Form.Label>Registration Date<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Control
+                          type="date"
+                          className="form-control"
+                          name="registration_date"
+                          value={customerData.registration_date}
+                          onChange={handleChange}required
+                          placeholder="Registration Date"
+                        />
+                      </Form.Group>
+                    </Row>
+
+                    <Row className="mb-2">
+                      <Form.Group controlId="formGridC/O" className="col col-sm-3">
+                        <Form.Label>C/O<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Select
+                          defaultValue="Choose..."
+                          className="form-control"
+                          name="care_of_type"
+                          value={customerData.care_of_type}
+                          onChange={handleChange}required
+                        >
+                             <option value="Choose"></option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Husband">Husband</option>
+
+                          <option value="Wife">Wife</option>
+                          <option value=" None">None</option>
+                        </Form.Select>
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridName" className="col col-sm-3">
+                        <Form.Label>Name<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Control
+                          type="text"
+                          name="care_of_name"
+                          value={customerData.care_of_name}
+                          onChange={handleChange}required
+                          placeholder="Care Name"
+                        />
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridC/O" className="col col-sm-3">
+                        <Form.Label>Nominee<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Select
+                          defaultValue="Choose..."
+                          className="form-control"
+                          name="nominee_type"
+                          value={customerData.nominee_type}
+                          onChange={handleChange}required
+                        >
+                         
+                         <option value="Choose"></option>
+                          <option value="Father">Father</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Husband">Husband</option>
+                          <option value="Wife">Wife</option>
+                          <option value=" None">None</option>
+                        </Form.Select>
+                      </Form.Group>
+
+                      <Form.Group controlId="formGridName" className="col col-sm-3">
+                        <Form.Label>Name<span style={{ color: 'red' }}>*</span></Form.Label>
+
+                        <Form.Control
+                          type="text"
+                          name="nominee_name"
+                          value={customerData.nominee_name}
+                          onChange={handleChange}required
+                          placeholder="Nominee Name"
+                        />
+                      </Form.Group>
+                    </Row>
+                  </MDBCardBody>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <br></br>
+
+                  <MDBCardBody>
+                    <MDBCardTitle>Id/Address Proof<span style={{ color: 'red' }}>*</span></MDBCardTitle>
+                    <br></br>
+                    <MDBTable component={Paper}>
+                      <MDBTableHead>
+                        <tr>
+                          <th scope="col">DOCUMENT</th>
+
+                          <th scope="col">DOCUMENT TYPE</th>
+
+                          <th scope="col">DOCUMENT COPY</th>
+
+                          <th scope="col">EXPIRE DATE</th>
+
+                          <th scope="col">DOCUMENT NO</th>
+                        </tr>
+                      </MDBTableHead>
+
+                      <MDBTableBody>
+                        <tr>
+                          <th scope="col">
+                            <Box sx={{ mr: 2 }}>
+                              <FormControl className="col col-sm-10">
+                                <Form.Group controlId="formGridNominee" className="col col-sm-3">
+                                  <InputLabel id="demo-simple-select-label">Document</InputLabel>
+
+                                  <Select
+                                    name="document1"
+                                    id="demo-simple-select"
+                                    value={customerData.document1}
+                                    label="Document"
+                                    onChange={handleChange}required
+                                    style={{ minWidth: '150px', height: '38px' }}
+                                  >
+                                    <MenuItem value="Aadhar Card">Aadhar card</MenuItem>
+
+                                    <MenuItem value="Pan Card">Pan Card</MenuItem>
+
+                                    <MenuItem value="Voter Id">Voter Id</MenuItem>
+
+                                    <MenuItem value="Driving License">Driving License</MenuItem>
+
+                                    <MenuItem value="Ration Card">Ration Card</MenuItem>
+                                  </Select>
+                                </Form.Group>
+                              </FormControl>
+                            </Box>
+                          </th>
+
+                          <Box sx={{ mr: 2 }}>
+                            <FormControl className="col col-sm-10">
+                              <Form.Group controlId="formGridNominee" className="col col-sm-3">
+                                <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
+
+                                <Select
+                                  id="demo-simple-select"
+                                  value={customerData.document_type1}
+                                  label="Document type"
+                                  name="document_type1"
+                                  onChange={handleChange}required
+                                  style={{ minWidth: '150px', height: '38px' }}
+                                >
+                                  <MenuItem value="ID">ID</MenuItem>
+
+                                  <MenuItem value="Address">Address</MenuItem>
+                                </Select>
+                              </Form.Group>
+                            </FormControl>
+                          </Box>
+
+                          <td>
+                            <input
+                              type="file"
+                              className="form-control-file"
+                              id="exampleFormControlFile1"
+                              accept="image/*"
+                              name="document_copy1"
+                              onChange={handleImageChange1}required
+                            />
+                          </td>
+
+                          <td>
+                            <input
+                              type="date"
+                              class="form-control"
+                              placeholder="Expire_date1"
+                              aria-label="Username"
+                              aria-describedby="basic-addon1"
+                              name="expire_date1"
+                              value={customerData.expire_date1}
+                              onChange={handleChange}required
+                            />
+                          </td>
+
+                          <td>
+                            <MDBInput
+                              type="text"
+                              name="document_number1"
+                              value={customerData.document_number1}
+                              onChange={handleChange}required
+                              placeholder="document_number1"
+                            />
+                          </td>
+                        </tr>
+                      </MDBTableBody>
+                    </MDBTable>
+
+                    <MDBCardTitle>Additional Id/Address Proof<span style={{ color: 'red' }}>*</span></MDBCardTitle>
+                    <br></br>
+                    <div id="table-container">
+                      <MDBTable bordered>
+                        <MDBTableHead>
+                          <tr>
+                            <th scope="col">DOCUMENT</th>
+
+                            <th scope="col">DOCUMENT TYPE</th>
+
+                            <th scope="col">DOCUMENT COPY</th>
+
+                            <th scope="col">EXPIRE DATE</th>
+
+                            <th scope="col">DOCUMENT NO</th>
+                          </tr>
+                        </MDBTableHead>
+
+                        <MDBTableBody>
+                          <tr>
+                            <th scope="col">
+                              <Box sx={{ mr: 2 }}>
+                                <FormControl className="col col-sm-10">
+                                  <Form.Group controlId="formGridNominee" className="col col-sm-3">
+                                    <InputLabel id="demo-simple-select-label">Document</InputLabel>
+
+                                    <Select
+                                      name="document2"
+                                      id="demo-simple-select"
+                                      value={customerData.document2}
+                                      label="Document"
+                                      onChange={handleChange}required
+                                      style={{ minWidth: '150px', height: '38px' }}
+                                    >
+                                      <MenuItem value="Aadhar Card">Aadhar card</MenuItem>
+
+                                      <MenuItem value="Pan Card">Pan Card</MenuItem>
+
+                                      <MenuItem value="Voter Id">Voter Id</MenuItem>
+
+                                      <MenuItem value="Driving License">Driving License</MenuItem>
+
+                                      <MenuItem value="Ration Card">Ration Card</MenuItem>
+                                    </Select>
+                                  </Form.Group>
+                                </FormControl>
+                              </Box>
+                            </th>
+
+                            <Box sx={{ mr: 2 }}>
+                              <FormControl className="col col-sm-10">
+                                <Form.Group controlId="formGridNominee" className="col col-sm-3">
+                                  <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
+
+                                  <Select
+                                    id="demo-simple-select"
+                                    value={customerData.document_type2}
+                                    label="Document type"
+                                    name="document_type2"
+                                    onChange={handleChange}required
+                                    style={{ minWidth: '150px', height: '38px' }}
+                                  >
+                                    <MenuItem value="ID">ID</MenuItem>
+
+                                    <MenuItem value="Address">Address</MenuItem>
+                                  </Select>
+                                </Form.Group>
+                              </FormControl>
+                            </Box>
+
+                            <td>
+                              <input
+                                type="file"
+                                class="form-control-file"
+                                id="exampleFormControlFile1"
+                                accept="image/*"
+                                name="document_copy2"
+                                onChange={handleImageChange2}required
+                              ></input>
+                            </td>
+
+                            <td>
+                              <input
+                                type="date"
+                                class="form-control"
+                                placeholder="Expire_date1"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                name="expire_date2"
+                                value={customerData.expire_date2}
+                                onChange={handleChange}required
+                              />
+                            </td>
+
+                            <td>
+                              <MDBInput
+                                type="text"
+                                name="document_number2"
+                                value={customerData.document_number2}
+                                onChange={handleChange}required
+                                placeholder="Document_numner"
+                              />
+                            </td>
+                          </tr>
+                        </MDBTableBody>
+                      </MDBTable>
+                    </div>
+                  </MDBCardBody>
+
+                  <br></br>
+
+                  <MDBCardBody>
+                    <Row className="mb-3">
+                      <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
+                        <br></br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" className="me-4 btn btn-success btn-lg btn-block mx-auto d-block my-50">
+                          <center>Submit</center>
+                        </button>
+                      </Form.Group>
+                    </Row>
+                  </MDBCardBody>
+                </Grid>
+              </Grid>
+            </Container>
+          </Paper>
+        </form>
+      </div>
     </div>
-
-    <input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={handleImageChange}></input>
-
-    </Row>
-
-    <br></br>
-
-    <Row className="mb-2">
-
-        <Form.Group controlId="formcustomername" className="col col-sm-4">
-
-            <Form.Label>Customer Name</Form.Label>
-
-            <input type="text" className="form-control" placeholder="Customer name" aria-label="Username" aria-describedby="basic-addon1" name="customer_name" value={customerData.customer_name} onChange={handleChange} />
-
-        </Form.Group>
-
-        <Form.Group controlId="formcustomer-id" className="col col-sm-4">
-
-            <Form.Label>Customer Id</Form.Label>
-
-            <input type="text" className="form-control" placeholder="Customer Id" aria-label="Username" aria-describedby="basic-addon1"/>
-
-        </Form.Group>
-
-    </Row>
-
-    <Row className="mb-2">
-
-        <Form.Group controlId="formDate" className="col col-sm-4">
-
-            <Form.Label>Date of Birth</Form.Label>
-
-            <input type="date" className="form-control" placeholder="Date of Birth" aria-label="Username" aria-describedby="basic-addon1" name="date_of_birth" value={customerData.date_of_birth} onChange={handleChange}/>
-
-        </Form.Group>
-
-    <Form.Group className=" col col-sm-4" controlId="formGridGender" name="gender" value={customerData.gender} onChange={handleChange}>
-
-            <Form.Label>Gender</Form.Label>
-
-            <br></br>
-
-      <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Male' inline />
-
-      <MDBRadio name='inlineRadio' id='inlineRadio2' value='option2' label='Female' inline />
-
-      <MDBRadio name='inlineRadio' id='inlineRadio3' value='option3' label='Other' inline />
-
-      </Form.Group>
-
-    </Row>    
-
-    <Row className="mb-2">
-
-    <Form.Label>Mobile Number</Form.Label>
-
-        <Form.Group controlId="formBasicMobile" placeholder="Mobile Number" className="col col-sm-4" name="mobile_number" value={customerData.mobile_number} onChange={handleChange}>
-
-        <InputGroup>
-
-    <InputGroup.Text id="basic-addon1">+91</InputGroup.Text>
-
-    <Form.Control/>
-
-  </InputGroup>  
-
-        </Form.Group>
-
-            <FormControl className="col col-sm-3 m-2 pl-2">
-
-            <Form.Label>Phone No</Form.Label>
-
-            <Select
-
-          labelId="demo-simple-select-label"
-
-          id="demo-simple-select"
-
-          value={customerData.Phoneno}
-
-          onChange={handleChange}
-
-          style={{ minWidth: '120px', height: '38px' }}
-
-        >
-
-          <MenuItem value="Residence No">Residence No</MenuItem>
-
-          <MenuItem value="Office No">Office No</MenuItem>
-
-        </Select>
-
-        </FormControl>
-
-       
-
-    </Row>
-
-    <Row className="mb-2">
-
-        <Form.Group className=" col col-sm-4" controlId="formGridAddress1" >
-
-            <Form.Label>Address Line1</Form.Label>
-
-             <input type="text" className="form-control" placeholder="Address line1"  aria-describedby="basic-addon1" name="address_line_one" value={customerData.address_line_one} onChange={handleChange}/>
-
-        </Form.Group>
-
-        <Form.Group className="col col-sm-4" controlId="formGridAddress2" >
-
-            <Form.Label>Address Line2</Form.Label>
-
-             <input type="text" className="form-control" placeholder="Address line2"  aria-describedby="basic-addon1" name="address_line_two" value={customerData.address_line_two} onChange={handleChange}/>
-
-        </Form.Group>
-
-    </Row>
-
-    <Row className="mb-2">
-
-    <Form.Group controlId="formCity" className="col col-sm-4">
-
-            <Form.Label>City</Form.Label>
-
-            <input type="text" className="form-control" placeholder="City" aria-label="Username" aria-describedby="basic-addon1" name="city" value={customerData.city} onChange={handleChange}/>
-
-        </Form.Group>
-
-        <Form.Group controlId="formGridState" className="col col-sm-4">
-
-            <Form.Label>State</Form.Label>
-
-            <input type="text" className="form-control" placeholder="State" aria-label="Username" aria-describedby="basic-addon1" name="state" value={customerData.state} onChange={handleChange}/>
-
-        </Form.Group>      
-
-    </Row>
-
-    <Row className="mb-2">
-
-    <Form.Group controlId="formGridCountry" className="col col-sm-4">
-
-    <Form.Label>Country</Form.Label>
-
-            <Form.Select defaultValue="Choose..." className="form-control" name="country" value={customerData.country} onChange={handleChange}>
-
-                <option value="Choose...">Choose...</option>
-
-                <option value="India">India</option>
-
-            </Form.Select>
-
-         </Form.Group>
-
-         <Form.Group controlId="formGridState" className="col col-sm-4">
-
-            <Form.Label>Registration Date</Form.Label>
-
-            <Form.Control type="date" className="form-control" name="registration_date" value={customerData.registration_date} onChange={handleChange} placeholder="Registration Date"/>
-
-        </Form.Group>        
-
-    </Row>
-
-    <Row className="mb-2">
-
-        <Form.Group controlId="formGridC/O" className="col col-sm-2">
-
-        <Box sx={{ mr:2}}>
-
-            <FormControl className="col col-sm-9">
-
-            <Form.Label>C/O</Form.Label>
-
-            <InputLabel id="demo-simple-select-label"></InputLabel>
-
-        <Select
-
-          labelId="demo-simple-select-label"
-
-          id="demo-simple-select"
-
-          name="care_of_type"
-
-          value={customerData.care_of_type}
-
-          label="Document"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '135px', height: '38px' }}
-
-        >
-
-          <MenuItem value="Father">Father</MenuItem>
-
-          <MenuItem value="Husband">Husband</MenuItem>
-
-        </Select>
-
-        </FormControl>
-
-        </Box>
-
-        </Form.Group>
-
-        <Form.Group className="col col-sm-2" controlId="formGridName">
-
-            <Form.Label>Name</Form.Label>
-
-            <Form.Control className="form-control" type="text" name="care_of_name" value={customerData.care_of_name} onChange={handleChange} placeholder="Care Name" />
-
-        </Form.Group>
-
-        <Form.Group controlId="formGridNominee" className="col col-sm-2">
-
-        <Box sx={{ mr:3}}>
-
-            <FormControl className="col col-sm-9">
-
-            <Form.Group controlId="formGridNominee" className="col col-sm-4">
-
-            <Form.Label>Nominee</Form.Label>
-
-            <InputLabel id="demo-simple-select-label"></InputLabel>
-
-        <Select
-
-          id="demo-simple-select"
-
-          name="nominee_type"
-
-          value={customerData.nominee_type}
-
-          placeholder="Nominee Type"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '135px', height: '38px' }}
-
-        >
-
-          <MenuItem value="Father">Father</MenuItem>
-
-          <MenuItem value="Husband">Husband</MenuItem>
-
-          <MenuItem value="Son">Son</MenuItem>
-
-          <MenuItem value="Daughter">Daughter</MenuItem>
-
-        </Select>
-
-        </Form.Group>
-
-        </FormControl>
-
-        </Box>
-
-        </Form.Group>
-
-        <Form.Group className="col col-sm-2" controlId="formGridName">
-
-            <Form.Label>Nominee Name</Form.Label>
-
-            <Form.Control className="form-control" type="text" name="nominee_name" value={customerData.nominee_name} onChange={handleChange} placeholder="Nominee Name" />
-
-        </Form.Group>
-
-        </Row>
-
-        </MDBCardBody>
-
-        </MDBCard>
-
-        <br></br>
-
-       
-
-        <MDBCard >
-
-        <MDBCardBody>
-
-        <MDBCardTitle>Id/Address Proof</MDBCardTitle>
-
-        <MDBTable bordered >
-
-      <MDBTableHead>
-
-        <tr>
-
-          <th scope='col'>DOCUMENT</th>
-
-          <th scope='col'>DOCUMENT TYPE</th>
-
-          <th scope='col'>DOCUMENT COPY</th>
-
-          <th scope='col'>EXPIRE DATE</th>
-
-          <th scope='col'>DOCUMENT NO</th>
-
-        </tr>
-
-      </MDBTableHead>
-
-      <MDBTableBody>
-
-        <tr>
-
-          <th scope='col'>
-
-          <Box sx={{ mr:2}}>
-
-            <FormControl className="col col-sm-10">
-
-            <Form.Group controlId="formGridNominee" className="col col-sm-3">
-
-            <InputLabel id="demo-simple-select-label">Document</InputLabel>
-
-   
-
-        <Select
-
-          name="Document"
-
-          id="demo-simple-select"
-
-          value={customerData.Document}
-
-          label="Document"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '150px', height: '43px' }}
-
-        >
-
-          <MenuItem value="Aadhar Card">Aadhar card</MenuItem>
-
-          <MenuItem value="Pan Card">Pan Card</MenuItem>
-
-          <MenuItem value="Voter Id">Voter Id</MenuItem>
-
-          <MenuItem value="Driving License">Driving License</MenuItem>
-
-          <MenuItem value="Ration Card">Ration Card</MenuItem>
-
-        </Select>
-
-        </Form.Group>
-
-        </FormControl>
-
-        </Box>
-
-            </th>
-
-            <Box sx={{ mr:2}}>
-
-            <FormControl className="col col-sm-10">
-
-            <Form.Group controlId="formGridNominee" className="col col-sm-3">
-
-            <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
-
-        <Select
-
-          id="demo-simple-select"
-
-          value={customerData.Document_type}
-
-          label="Document type"
-
-          name="Document_type"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '150px', height: '38px' }}
-
-        >
-
-          <MenuItem value="ID">ID</MenuItem>
-
-          <MenuItem value="Address">Address</MenuItem>
-
-        </Select>
-
-        </Form.Group>
-
-        </FormControl>
-
-        </Box>
-
-          <td><input type="file" className="form-control-file" id="exampleFormControlFile1"></input></td>
-
-          <td><input type="date" className="form-control-file" id="exampleFormControlFile1" placeholder="Expire_date" name="Expire_date" value={customerData.Expire_date} onChange={handleChange}></input></td>
-
-          <td><MDBInput type='text' name="Document_number" value={customerData.Document_number} onChange={handleChange} placeholder="Document_numner" /></td>  
-
-        </tr>
-
-      </MDBTableBody>
-
-    </MDBTable>
-
-    <MDBCardTitle>Additional Id/Address Proof</MDBCardTitle>
-
-    <div id="table-container">
-
-        <MDBTable bordered >
-
-      <MDBTableHead>
-
-        <tr>
-
-          <th scope='col'>DOCUMENT</th>
-
-          <th scope='col'>DOCUMENT TYPE</th>
-
-          <th scope='col'>DOCUMENT COPY</th>
-
-          <th scope='col'>EXPIRE DATE</th>
-
-          <th scope='col'>DOCUMENT NO</th>
-
-        </tr>
-
-      </MDBTableHead>
-
-      <MDBTableBody>
-
-        <tr>
-
-          <th scope='col'>
-
-          <Box sx={{ mr:2}}>
-
-            <FormControl className="col col-sm-10">
-
-            <Form.Group controlId="formGridNominee" className="col col-sm-3">
-
-            <InputLabel id="demo-simple-select-label">Document</InputLabel>
-
-   
-
-        <Select
-
-          name="Document1"
-
-          id="demo-simple-select"
-
-          value={customerData.Document1}
-
-          label="Document"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '150px', height: '43px' }}
-
-        >
-
-          <MenuItem value="Aadhar Card">Aadhar card</MenuItem>
-
-          <MenuItem value="Pan Card">Pan Card</MenuItem>
-
-          <MenuItem value="Voter Id">Voter Id</MenuItem>
-
-          <MenuItem value="Driving License">Driving License</MenuItem>
-
-          <MenuItem value="Ration Card">Ration Card</MenuItem>
-
-        </Select>
-
-        </Form.Group>
-
-        </FormControl>
-
-        </Box>
-
-            </th>
-
-            <Box sx={{ mr:2}}>
-
-            <FormControl className="col col-sm-10">
-
-            <Form.Group controlId="formGridNominee" className="col col-sm-3">
-
-            <InputLabel id="demo-simple-select-label">Document Type</InputLabel>
-
-        <Select
-
-          id="demo-simple-select"
-
-          value={customerData.Document_type1}
-
-          label="Document type"
-
-          name="Document_type1"
-
-          onChange={handleChange}
-
-          style={{ minWidth: '150px', height: '38px' }}
-
-        >
-
-          <MenuItem value="ID">ID</MenuItem>
-
-          <MenuItem value="Address">Address</MenuItem>
-
-        </Select>
-
-        </Form.Group>
-
-        </FormControl>
-
-        </Box>
-
-          <td><input type="file" className="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={handleImageChange}></input></td>
-
-          <td><input type="date" className="form-control" placeholder="Expire_date1" aria-label="Username" aria-describedby="basic-addon1" name="Expire_date1" value={customerData.Expire_date1} onChange={handleChange}/></td>
-
-          <td><MDBInput type='text' name="Document_number1" value={customerData.Document_number1} onChange={handleChange} placeholder="Document_numner" /></td>  
-
-        </tr>
-
-      </MDBTableBody>
-
-    </MDBTable>
-
-    </div>
-
-      </MDBCardBody>
-
-    </MDBCard>
-
-    <br></br>
-
-    <MDBCard>
-
-      <MDBCardBody>
-
-       
-
-        <Row className="mb-3">
-
-        <Form.Group controlId="formGridCheckbox" className="col col-sm-6">
-
-            <br></br>
-
-            <button type="submit" className="me-4 btn btn-success btn-lg btn-block"><center>Finish</center></button>
-
-        </Form.Group>
-
-    </Row>
-
-       
-
-      </MDBCardBody>
-
-    </MDBCard>
-
-    <br></br>
-
-</form>
-
-</Paper>
-
-</div>
-
-</div>
-
   );
+};
 
-
-
-
-}
-
-    export default AddCustomer;
+export default AddCustomer;
