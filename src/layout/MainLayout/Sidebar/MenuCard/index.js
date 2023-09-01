@@ -79,7 +79,7 @@ const MenuCard = () => {
 
   return (
     <CardStyle>
-      <div>&nbsp;©VinsupInfotech (P) Ltd </div>
+      <div>&nbsp;©santhosh</div>
     </CardStyle>
   );
 };

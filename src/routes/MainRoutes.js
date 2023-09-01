@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
+
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
@@ -65,11 +66,15 @@ const MainRoutes = {
       path: 'utils',
       children: [
         {
-          path: 'util-approval',
+          path: 'util-Approval',
           element: <UtilsApproval />
+         
         }
       ]
     },
+    
+  
+
     {
       path: 'utils',
       children: [

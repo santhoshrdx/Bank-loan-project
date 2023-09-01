@@ -66,15 +66,17 @@ children: [
    title: 'Loan Approval',
    type: 'item',
    icon: icons.IconChecklist,
-   url: '/utils/util-approval',
+   url: '/utils/util-Approval',
    breadcrumbs: false
  },
+ 
+ 
  {
    id: 'material-icons',
    title: 'Repayment',
    type: 'item',
    icon: icons.IconRepeat,
-   url: '/utils/util-repayment',
+   url: '/utils/util-Repayment',
    breadcrumbs: false
  }
 ]
@@ -190,7 +192,17 @@ title: 'Report',
 type: 'item',
 url: '/utils/util-report',
 icon: icons.IconMessageReport,
-breadcrumbs: false
+children: [
+  {
+  id: 'tabler-icon',
+  title: 'Wrranty Report',
+  type: 'item',
+  icon: icons.IconMessageReport,
+  url: '',
+  breadcrumbs: false
+
+  }
+]
 },
 {
 id: 'util-feedback',

@@ -5,11 +5,11 @@ import { Link, Typography, Stack } from '@mui/material';
 
 const AuthFooter = () => (
   <Stack direction="row" justifyContent="space-between">
-    <Typography variant="subtitle2" component={Link} href="https://vinsupinfotech.com" target="_blank" underline="hover">
-    vinsupinfotech.com
+    <Typography variant="subtitle2" component={Link} href="" target="_blank" underline="hover">
+    santhosh
     </Typography>
-    <Typography variant="subtitle2" component={Link} href="https://vinsupinfotech.com" target="_blank" underline="hover">
-      &copy;vinsupinfotech.com
+    <Typography variant="subtitle2" component={Link} href="" target="_blank" underline="hover">
+      &copy;santhosh
     </Typography>
   </Stack>
 );
